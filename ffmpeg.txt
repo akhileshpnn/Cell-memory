@@ -1,3 +1,0 @@
-ffmpeg -r 10 -f image2 -s 1920x1080 -start_number 0 -i cell_image_%04d.png -vframes 300 -vcodec libx264 -crf 25  -pix_fmt yuv420p a_test.mp4
-
-ffmpeg -r 10 -f image2 -start_number 0 -i cell_image_%04d.png -vframes 300 -vcodec libx264 -crf 25  -pix_fmt yuv420p -vf "scale=-2:min(1080\,trunc(ih/2)*2)" a_test.mp4
