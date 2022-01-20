@@ -22,9 +22,6 @@ class ReactionDiffusion1D:
     dt=0.01
     t_eval = np.arange(0,tF,dt)
     
-    #folder = 'C:\\Users\\nandan\\Dropbox\\Caesar\\EGFR memory paper_after science\\figure1\\egfrptp_sde\\20210802\\data\\'
-    #save_data = None
-    
     add_noise = True
     noise_ampl=0.02
 
@@ -232,22 +229,22 @@ if __name__ == '__main__':
     
     seed_int = np.random.randint(1000000)
     
-    seed_int=180988 # Figure 1D
+    seed_int=180988 # Figure 1D , random seed used.
 
     np.random.seed(seed_int)
     print('random seed used ',seed_int)
     
     
-    lbo = Periodic()
-    model = EgfrPtp()
-    initial_condition = random_ini()
+    lbo = Periodic() # boundary condition
+    model = EgfrPtp() # model equations and parameters
+    initial_condition = random_ini() # initial condition
     
-    stimulus=single_gradient()
+    stimulus=single_gradient() # stimulation protocol
     
     # stimulus=seq_gradient_2_dynamic()
     # stimulus=seq_gradient_3_criticality()
     
-    Stimu_strength = [0.2]#np.arange(0.0, 0.51, 0.01)
+    Stimu_strength = [0.2] # maximum amplitude of gradient stimulation
     
     tt=[10,50,70]
     
