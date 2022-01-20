@@ -88,7 +88,7 @@ def reinitialization(y, grid, dsigma, plot_reint=None,check_efficiency=None):
     return y    
 
 
-tF = 350
+tF = 250
 dt=0.01
 t_eval = np.arange(0,tF,dt)
 save = None
