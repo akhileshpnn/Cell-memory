@@ -34,4 +34,4 @@ rd = ReactionDiffusion1D(model, initial_condition, lbo,stimulus)
 rd.simulate()
 ```
 
-Excecution of Physical model of single-cell chemotaxis: Currently 'level_set_main.py' files load kymograph corresponding to Figure 1D and generate cell shapes in Figure 1D. A single CPU of a normal desktop processor (eg. Intel64 Family 6) require ~24 hrs for finishing T=250min simulation.
+Excecution of Physical model of single-cell chemotaxis: Currently 'level_set_main.py' file loads kymograph corresponding to Figure 1D and generate cell shapes in Figure 1E. A single CPU of a normal desktop computer (eg. with Intel64 Family 6 processor) require ~24 hrs for completion.
