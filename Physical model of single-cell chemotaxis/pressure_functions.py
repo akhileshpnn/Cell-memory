@@ -1,4 +1,5 @@
 
+import numpy as np
 def pressure_pro(egfrp):
     
     kprot=0.08 #nN/um2 
