@@ -114,7 +114,7 @@ seed_int=180988 #Figure 1E
 shift=True
 print('seed '+str(seed_int))
 
-egfrp_kymo = np.load('Figure1D_Kymograph_Ep_seed('+str(seed_int)+').npy')
+egfrp_kymo = np.load(os.path.join('Figure1D_Kymograph_Ep_seed('+str(seed_int)+').npy'))
 
 tt=[1000,7000]
 if shift==True:
