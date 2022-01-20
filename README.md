@@ -26,7 +26,7 @@ Sample code :
 ```python
 
 model = EgfrPtp()
-initial_condition = random_ini()
+initial_condition = around_steadystate()
 lbo = Periodic()
 stimulus = single_gradient()
 
