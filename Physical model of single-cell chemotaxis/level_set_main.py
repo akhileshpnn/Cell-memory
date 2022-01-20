@@ -177,7 +177,7 @@ for i in range(1,len(t_eval)):
         pressure[:,:,0]=Ptotx;pressure[:,:,1]=Ptoty
         visco[:,:,0]=Lx;visco[:,:,1]=Ly
         
-        plot_membrane(mask_overlayed,lim=L,f=j)        
+        plot_membrane(mask_overlayed,lim=L,f=j*dt)        
         
         # save_membrane_mask(mask_overlayed,save_grid,f=j)
         # save_other_quants(grid,Y,membrane_indxs,pressure,visco,velocity,save_grid,f=j)
