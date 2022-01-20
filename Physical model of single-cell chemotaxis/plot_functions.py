@@ -234,7 +234,7 @@ def plot_all_vectors(Pm,Lm,Vm,grid,membrane_mask,membrane_indxs,signal_pos,lim,f
 def plot_membrane(membrane_mask,lim,f):
     fig, ax = plt.subplots()
     # ax.set_title("vectors@boundary")
-    ax.set_title(int(f*10)+0)
+    ax.set_title(str(f)+'(min)')
     im = ax.imshow(membrane_mask,extent=[0,lim,lim,0],cmap=parula_map,vmin=0,vmax=0.6)
     plt.colorbar(im)
     plt.show()
