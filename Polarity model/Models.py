@@ -3,14 +3,12 @@ import numpy as np
 
 class EgfrPtp:
     
-    # egfrt=1.1; # monostable
+    # egfrt=1.1; # Figure1-figure supplement1F
    
-    # egfrt=1.27; #criticality
-    # egfrt=1.265; #criticality for 2 gradient from same direction
+     egfrt=1.27; # Figure1-figure supplement1E,F
     
-    egfrt=1.35; #ihss
+    #egfrt=1.35; #Figure1-figure supplement1E
     
-    # egfrt=1.85; #ihss
     
     
     ptprgt=1.0;ptpn2t=1.0;
