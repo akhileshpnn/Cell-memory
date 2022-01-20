@@ -21,9 +21,9 @@ class ReactionDiffusion1D:
     tF = 300;
     dt=0.01
     t_eval = np.arange(0,tF,dt)
-    folder = 'C:\\Users\\nandan\\Dropbox\\Caesar\\EGFR memory paper_after science\\figure1\\egfrptp_sde\\20210802\\data\\'
-   
-    save_data = None
+    
+    #folder = 'C:\\Users\\nandan\\Dropbox\\Caesar\\EGFR memory paper_after science\\figure1\\egfrptp_sde\\20210802\\data\\'
+    #save_data = None
     
     add_noise = True
     noise_ampl=0.02
@@ -125,9 +125,9 @@ class ReactionDiffusion1D:
         for t in tt:
             ax.axhline(y=int(t/rd.dt),color='r')
         
-        if not self.save_data is None:
-            plt.savefig(os.path.join(self.folder,'Kymograph_'+label+'_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').png'))    
-            np.save(os.path.join(self.folder,'Kymograph_'+label+'_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').npy'),ep)            
+        #if not self.save_data is None:
+        #    plt.savefig(os.path.join(self.folder,'Kymograph_'+label+'_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').png'))    
+        #    np.save(os.path.join(self.folder,'Kymograph_'+label+'_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').npy'),ep)            
         plt.show()
     
     def plot_cellmem(self,ep, time):
@@ -150,9 +150,9 @@ class ReactionDiffusion1D:
         ax.spines['polar'].set_visible(False) 
 #        ax.set_title('@EGFRt_'+str(egfrt)+'_initial state')
         
-        if not self.save_data is None:
-            np.save(os.path.join(self.folder,'Cell membrane_egfrp_'+type(self.stimulus).__name__+'_@'+str(time)+'(a.u).npy'),epg)
-            plt.savefig(os.path.join(self.folder,'Cell membrane_'+type(self.stimulus).__name__+'_@'+str(time)+'(a.u)_from python.png'))
+        #if not self.save_data is None:
+        #    np.save(os.path.join(self.folder,'Cell membrane_egfrp_'+type(self.stimulus).__name__+'_@'+str(time)+'(a.u).npy'),epg)
+        #    plt.savefig(os.path.join(self.folder,'Cell membrane_'+type(self.stimulus).__name__+'_@'+str(time)+'(a.u)_from python.png'))
         plt.show()
     
     def plot_timeseries(self,ep, bin_front,bin_back):
@@ -206,8 +206,8 @@ class ReactionDiffusion1D:
         plt.xlabel('Cell contour',fontsize=20)
         plt.xlim(1,self.N)
 #        plt.xticks([])
-        if not self.save_data is None:
-            np.save(os.path.join(self.folder,'Stimulus_egf_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').npy'),self.Stimulus)     
+        #if not self.save_data is None:
+        #    np.save(os.path.join(self.folder,'Stimulus_egf_'+type(self.stimulus).__name__+'_seed('+str(seed_int)+').npy'),self.Stimulus)     
         plt.show()
     
     def plot_gradient_steepness(self,tt):
@@ -222,9 +222,9 @@ class ReactionDiffusion1D:
         plt.xlim(t_beg,t_end)
         plt.xlabel('Time(min)',fontsize=20)
         plt.ylabel('Gradient steepness(%)',fontsize=20)
-        if not self.save_data is None:
-            plt.savefig(os.path.join(self.folder,'Gradient steepness_egf_'+type(self.stimulus).__name__+'.png'))    
-            np.save(os.path.join(self.folder,'Gradient steepness_egf_'+type(self.stimulus).__name__+'.npy'),stimulus_steepness_cropped)     
+        #if not self.save_data is None:
+        #    plt.savefig(os.path.join(self.folder,'Gradient steepness_egf_'+type(self.stimulus).__name__+'.png'))    
+        #    np.save(os.path.join(self.folder,'Gradient steepness_egf_'+type(self.stimulus).__name__+'.npy'),stimulus_steepness_cropped)     
         plt.show()
 
         
@@ -232,14 +232,7 @@ if __name__ == '__main__':
     
     seed_int = np.random.randint(1000000)
     
-    # seed_int=180988 # 1 gradient
-    
-    # seed_int=350106 # 2 gradients same
-    # seed_int=481606 # 2 gradients opposite
-    
-    # seed_int=997281 # 1 gradient  @ihss
-    # seed_int=59179 # 2 gradient from opposite @ihss
-    # seed_int=598078 # 2 gradient from same @ihss
+    seed_int=180988 # Figure 1D
 
     np.random.seed(seed_int)
     print('random seed used ',seed_int)
@@ -250,15 +243,13 @@ if __name__ == '__main__':
     initial_condition = random_ini()
     
     stimulus=single_gradient()
-    # stimulus=seq_gradient_2_static()
+    
     # stimulus=seq_gradient_2_dynamic()
     # stimulus=seq_gradient_3_criticality()
     
     Stimu_strength = [0.2]#np.arange(0.0, 0.51, 0.01)
     
     tt=[10,50,70]
-    # tt=[10,70,150,210]
-    # tt=[10,50,70]
     
     print(type(model).__name__)
     
@@ -281,8 +272,8 @@ if __name__ == '__main__':
         rd.plot_gradient_profile(tt)
         # rd.plot_gradient_steepness(tt)
         
-        rd.plot_kymo(ep,tt,label='egfrp')
-        rd.plot_kymo(eep,tt,label='eegfrp')
+        rd.plot_kymo(ep,tt,label='Ep')
+        rd.plot_kymo(eep,tt,label='E-Ep')
         
         rd.plot_timeseries(ep,10,0)
         
@@ -292,6 +283,6 @@ if __name__ == '__main__':
             epmax=np.max(ep_stocha)
             eep_stocha=sol_stocha[:,rd.N:2*rd.N].T
             
-            rd.plot_kymo(ep_stocha,tt,label='egfrp')
-            rd.plot_kymo(eep_stocha,tt,label='eegfrp')
+            rd.plot_kymo(ep_stocha,tt,label='Ep')
+            rd.plot_kymo(eep_stocha,tt,label='E-Ep')
             
