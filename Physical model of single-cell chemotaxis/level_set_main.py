@@ -13,21 +13,14 @@ from termreinit import *
 from membrane_index import *
 
 
-# Nb=50;dim=2;L=10
-# Nb=100;dim=2;L=20
-# Nb=150;dim=2;L=30
-# Nb=200;dim=2;L=40
-# Nb=250;dim=2;L=50
-Nb=300;dim=2;L=60
+Nb=200;dim=2;L=40
 
 #defining grid
 x=np.linspace(0,L,Nb);y=np.linspace(0,L,Nb)
 dsigma=x[1]-x[0]
 grid=np.meshgrid(x, y,indexing='ij')
 
-# center= [20, 10]  
-center= [11,11]  
-# center= [35, 30]  
+center= [20, 7]  
 radius = 2
 
 def initialize_potential(grid,center,radius):    
@@ -106,8 +99,7 @@ Y0=initialize_potential(grid,center,radius)
 y0=np.ndarray.flatten(Y0)        
 velocity0=np.zeros((Nb,Nb,dim))
 
-L0x=np.zeros((Nb,Nb));L0y=np.zeros((Nb,Nb))
-
+L0x=np.zeros((Nb,Nb));L0y=np.zeros((Nb,Nb)) #viscoelastic state
 l0x=np.ndarray.flatten(L0x);l0y=np.ndarray.flatten(L0y)  
 
 
@@ -119,55 +111,26 @@ A0=area(Y0)
 
 print(folder_save)
 
-#seed_int=801481 #folder 3
-seed_int=13075 #folder 4
-#seed_int=469022 #folder 5
+seed_int=180988 #Figure 1E
 
-
+# loading kymograph
 shift=True
 print('seed '+str(seed_int))
 
-folder_kymo = 'C:\\Users\\nandan\\Dropbox\\Caesar\\EGFR memory paper_after science\\viscoelastic model\\20210806\\signalling module\\data\\'
-egfrp_kymo = np.load(os.path.join(folder_kymo,'Kymograph_egfrp_seq_gradient_3_ihss_seed('+str(seed_int)+').npy'))
+egfrp_kymo = np.load('Kymograph_egfrp_seq_gradient_3_ihss_seed('+str(seed_int)+').npy')
 
-tt=[1000,5000,9000,11000,15000,19000]
+tt=[1000,7000]
 if shift==True:
     egfrp_kymo = np.roll(egfrp_kymo,shift=-4,axis=0)
-# egfrp_kymo = egfrp_kymo[:,2000:]
+
 plot_kymo(egfrp_kymo,tt)
 
-load=None
-load_at = 140
-# load_from = '\\\\billy.storage.mpi-dortmund.mpg.de\\abt2\\group\\agkoseska\\Temp_Storage(June2020)\\Akhilesh\\ViscoElasticModel\\20210610\\3\\'
-# load_from = '\\\\billy.storage.mpi-dortmund.mpg.de\\abt2\\group\\agkoseska\\Temp_Storage(June2020)\\Abhishek\\ViscoElasticModel\\20210610\\1\\'
-load_from = 'C:\\Users\\nandan\\Desktop\\soma_temp\\Viscoelastic simulations\\20210802\\9\\'
-
-
 j=0
-if load==True:
-    j=load_at
-
-# for i in range(int(load_at/0.1),len(t_eval)):  
-for i in range(1,len(t_eval)):
-# for i in range(5000,5001):    
-# for i in range(20000,20001):  
-
-    
+for i in range(1,len(t_eval)):   
     print(i,end='\r')
     
-    # if i==792:
-    #     print('stop')
-    
-    # if load==True and i==int(load_at/0.1):
-    if load==True:
-        Y= np.load(os.path.join(load_from,'potential_'+str(load_at)+'.npy'))
-        Visco=np.load(os.path.join(load_from,'visco_'+str(load_at)+'.npy'))
-        Lx=Visco[:,:,0];Ly=Visco[:,:,1]
-        y=np.ndarray.flatten(Y)
-        lx=np.ndarray.flatten(Lx);ly=np.ndarray.flatten(Ly)
-    else:
-        Y=np.reshape(y,(Nb,Nb))    
-        Lx=np.reshape(lx,(Nb,Nb));Ly=np.reshape(ly,(Nb,Nb))
+    Y=np.reshape(y,(Nb,Nb))    
+    Lx=np.reshape(lx,(Nb,Nb));Ly=np.reshape(ly,(Nb,Nb))
 
     cell_mask=masking_cell(Y)    
     membrane_annotated,pm_bins = membrane_sorted(cell_mask)
@@ -176,20 +139,8 @@ for i in range(1,len(t_eval)):
     mem_len=len(membrane_indxs[0])
               
     egfrp=egfrp_kymo[:,i]
-    # 
-    #     egfrp=np.roll(egfrp,-1)
     mask_overlayed = activity_overlaying(egfrp,pm_bins)
     egfrp = mask_overlayed[membrane_indxs]
-    
-    
-    # curr_x=np.arange(len(egfrp))
-    # new_x=np.linspace(0,len(egfrp),mem_len)
-    # egfrp= np.interp(new_x, curr_x, egfrp)
-
-    # mask_overlayed=cell_mask.copy()*np.nan
-    # mask_overlayed[membrane_indxs]=egfrp
-    # mask_overlayed[np.where(membrane_annotated==0)]=2*np.nanmax(mask_overlayed)
-
     
     Nv=normal_vectors(Y,dsigma)
     [Nvx,Nvy]=Nv
@@ -205,10 +156,6 @@ for i in range(1,len(t_eval)):
     vm=velocity_update(visco_l,ptot,[Nvxm, Nvym])
     [vmx,vmy]=vm
     
-    
-    # velocity[:,:,0]=nearest_neighbour_extrapolation(vmx,membrane_indxs,Nb)
-    # velocity[:,:,1]=nearest_neighbour_extrapolation(vmy,membrane_indxs,Nb)
-    # Ptot=nearest_neighbour_extrapolation(ptot,membrane_indxs,Nb)
     [velocity[:,:,0],velocity[:,:,1],Ptot] = nearest_neighbour_extrapolation([vmx,vmy,ptot],membrane_indxs,Nb)
     
     Ptotx=Ptot*Nvx;Ptoty=Ptot*Nvy
@@ -224,7 +171,7 @@ for i in range(1,len(t_eval)):
     y=reinitialization(y, grid, dsigma, check_efficiency=None)
     
 
-    if i%1==0:
+    if i%1==0:  # frequency of plotting
         if i==10:
             save_grid=True
         else:
@@ -235,12 +182,8 @@ for i in range(1,len(t_eval)):
         pressure[:,:,0]=Ptotx;pressure[:,:,1]=Ptoty
         visco[:,:,0]=Lx;visco[:,:,1]=Ly
         
-        plot_membrane(mask_overlayed,lim=L,f=j)
-        # plot_all_vectors([Ptotx,Ptoty],[-Lx,-Ly],[velocity[:,:,0],velocity[:,:,1]],grid,mask_overlayed,membrane_indxs,signal_pos=None,lim=L,f=j)
-        
+        plot_membrane(mask_overlayed,lim=L,f=j)        
         
         # save_membrane_mask(mask_overlayed,save_grid,f=j)
         # save_other_quants(grid,Y,membrane_indxs,pressure,visco,velocity,save_grid,f=j)
-
-
         j=j+1
