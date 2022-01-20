@@ -17,26 +17,7 @@ class random_ini:
         Wper = (np.concatenate([self.per*np.random.rand(N), 0*np.random.rand(N), self.per*np.random.rand(N)])).transpose()
         W0 = Wper;
         return W0
-
-
-# class around_steadystate:
-    
-#     def set_initial_condition(self, N):
-#         #ein=5;eein=0;pin=0.2
-        
-# #        sol_timeseries = solve_ivp(EgfrPtp, [0, 500], [ein, eein, pin], args=(), dense_output=True)
-# #        
-# #        [ess,eess,pss] = sol_timeseries.y[:,-1]
-        
-#         #e = np.ones(N);
-#         #ess,pss=0.2,0.2
-#         #We = (np.concatenate([ess*e, eess*e, pss*e])).transpose()
-#         #We = np.array([ce*e; ge*e]).transpose()
-
-#         Wper = (np.concatenate([self.per*np.random.rand(N), 0*np.random.rand(N), self.per*np.random.rand(N)])).transpose()
-#         W0 = Wper;
-#         return W0
-    
+ 
 
 class around_steadystate:
     
