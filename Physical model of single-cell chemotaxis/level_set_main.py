@@ -108,13 +108,11 @@ A0=area(Y0)
 
 print(folder_save)
 
-seed_int=180988 #Figure 1E
-
 # loading kymograph
+seed_int=180988 #Figure 1E
 shift=True
 print('seed '+str(seed_int))
-
-egfrp_kymo = np.load(os.path.join('Figure1D_Kymograph_Ep_seed('+str(seed_int)+').npy'))
+egfrp_kymo = np.load(os.path.abspath(os.getcwd())+'\\'+'Figure1D_Kymograph_Ep_seed('+str(seed_int)+').npy')
 
 tt=[1000,7000]
 if shift==True:
