@@ -4,14 +4,11 @@ from plot_functions import *
 from scipy import signal
 from scipy.spatial import distance
 from scipy import ndimage
-
-
 from utils_ import *
 from pressure_functions import *
 from termConvection import *
 from termreinit import *
 from membrane_index import *
-
 
 Nb=200;dim=2;L=40
 
