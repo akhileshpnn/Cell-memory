@@ -22,7 +22,7 @@ Each folder has a file with name ending '_main.py'. This file combines different
 
 In the folder  /Cell-memory/Polarity model, the 'EgfrPtpSde_main.py' loads the model equations and parameters from 'Models.py' file. 
 
-Sample code :
+Excecution of Polarity model:
 ```python
 
 model = EgfrPtp()
@@ -33,4 +33,6 @@ stimulus = single_gradient()
 rd = ReactionDiffusion1D(model, initial_condition, lbo,stimulus)
 rd.simulate()
 ```
+
+
 
