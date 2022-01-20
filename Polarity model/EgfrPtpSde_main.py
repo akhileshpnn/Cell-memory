@@ -237,7 +237,7 @@ if __name__ == '__main__':
     
     lbo = Periodic() # boundary condition
     model = EgfrPtp() # model equations and parameters
-    initial_condition = random_ini() # initial condition
+    initial_condition = around_steadystate() # initial condition
     
     stimulus=single_gradient() # stimulation protocol
     
