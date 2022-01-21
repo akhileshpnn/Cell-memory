@@ -18,7 +18,7 @@ Physical model of single-cell chemotaxis : Cell shapes in Figure 1E, Figure 4B, 
 
 Each folder has a file with name ending '_main.py'. This file combines different objects (functions) defined in linked files in the same folder. 
 
-In the folder  /Cell-memory/Polarity model, the 'EgfrPtpSde_main.py' loads the model equations and parameters from 'Models.py' file. 
+For example: In the folder  /Cell-memory/Polarity model, the 'EgfrPtpSde_main.py' loads the model equations and parameters from 'Models.py' file. 
 
 Excecution of Polarity model:
 ```python
