@@ -11,9 +11,9 @@ Using the framework
 
 The subfolders contains codes to generate the results obtained by numerical simulations in the main and supplementary figures.
 
-Polarity model     : Kymographs in Figure 1D, Figure 1 - figure supplement 1C-E, Figure 4- figure supplement 1A,B. 
+Polarity model     : Kymographs in Figure 1D, Figure 1 - figure supplement 1D-H, Figure 4- figure supplement 1A,C, Figure 4- figure supplement 2A,C 
 
-Physical model of single-cell chemotaxis : Cell shapes in Figure 1E, Figure 4B, Figure 4 - figure supplement 1C.
+Physical model of single-cell chemotaxis : Cell shapes in Figure 1E, Figure 4B, Figure 4 - figure supplement 1B,D, Figure 4- figure supplement 2B,D
 
 
 Each folder has a file with name ending '_main.py'. This file combines different objects (functions) defined in linked files in the same folder. 
