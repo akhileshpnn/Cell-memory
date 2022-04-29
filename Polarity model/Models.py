@@ -3,11 +3,13 @@ import numpy as np
 
 class EgfrPtp:
     
-    # egfrt=1.1; # Figure1-figure supplement1F
+    # egfrt=1.1; # Basal uniform
    
-     egfrt=1.27; # Figure1-figure supplement1E,F
+     egfrt=1.26; # Criticality
     
-    #egfrt=1.35; #Figure1-figure supplement1E
+    #egfrt=1.35; # Stable polarized state
+    
+    #egfrt=1.85; # Hight uniform
     
     
     
