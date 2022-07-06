@@ -9,7 +9,9 @@ The code has been tested successfully with versions of Python (at least 2.7) on 
 Using the framework
 -------------------------
 
-The subfolders contain codes to generate the results obtained by numerical simulations in the main and supplementary figures.
+The subfolders contain codes to generate the results obtained by numerical simulations in the main and supplementary figures in the eLife article,
+
+Cells use molecular working memory to navigate in changing chemoattractant fields.
 
 Polarity model     : Kymographs in Figure 1D, Figure 1 - figure supplement 1D-H, Figure 4- figure supplement 1A,C, Figure 4- figure supplement 2A,C 
 
@@ -32,4 +34,4 @@ rd = ReactionDiffusion1D(model, initial_condition, lbo,stimulus)
 rd.simulate()
 ```
 
-Execution of Physical model of single-cell chemotaxis: Currently 'LevelSet_main.py' file loads kymograph corresponding to Figure 1D and generate cell shapes in Figure 1E. A single CPU of a normal desktop computer (eg. with Intel64 Family 6 processor) requires ~24 hrs for completion.
+Execution of Physical model of single-cell chemotaxis: 'LevelSet_main.py' file loads kymograph corresponding to Figure 1D and generate cell shapes in Figure 1E. A single CPU of a normal desktop computer (eg. with Intel64 Family 6 processor) requires ~24 hrs for completion.
