@@ -1,18 +1,16 @@
 # Cell-memory
 
-Python Code
-===================
-
-The code has been tested successfully with versions of Python (at least 2.7) on Windows and macOS.
-
--------------------------
-Using the framework
--------------------------
 
 The subfolders contain codes to generate the results obtained by numerical simulations in the eLife article,
 
 [Cells use molecular working memory to navigate in changing chemoattractant fields](https://elifesciences.org/articles/76825)
 
+
+The codes have been tested successfully with versions of Python (at least 2.7) on Windows and macOS.
+
+-------------------------
+Using the framework
+-------------------------
 
 Polarity model     : Kymographs in Figure 1D, Figure 1 - figure supplement 1D-H, Figure 4- figure supplement 1A,C, Figure 4- figure supplement 2A,C 
 
