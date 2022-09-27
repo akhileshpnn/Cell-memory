@@ -18,8 +18,8 @@ class EgfrPtp:
     
     kon=0.05;koff=5.6*kon
     
-    kexc1=0.008 #um^2/sec
-    kexc2=0.008 #um^2/sec
+    kexc1=0.008 #um^2/min
+    kexc2=0.008 #um^2/min
 
     
     def reaction(self, t, y, stimulus_input):
